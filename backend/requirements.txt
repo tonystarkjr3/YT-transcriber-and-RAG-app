@@ -1,0 +1,15 @@
+FastAPI
+uvicorn
+pydantic
+numpy
+scikit-learn
+faiss-cpu
+pytest
+pytest-asyncio
+python-dotenv
+sqlalchemy
+openai
+lxml
+sentence-transformers
+youtube-transcript-api
+certifi

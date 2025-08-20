@@ -1,0 +1,48 @@
+# ─── Node.js dependencies ───────────────────────────────────────────
+# ignore all node_modules folders, both top-level and nested
+node_modules/
+**/node_modules/
+
+# lock-files are usually committed — remove if you really don’t want them
+# package-lock.json
+# yarn.lock
+
+# ─── Python artifacts & venvs ───────────────────────────────────────
+# virtual environments
+venv/
+backend/venv/
+env/
+
+# byte-compiled / optimized files
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# ─── Environment & Secrets ─────────────────────────────────────────
+# dotenv files
+.env
+backend/.env
+
+# ─── Local databases & indexes ────────────────────────────────────
+# SQLite / local DB
+*.db
+backend/local.db
+
+# FAISS or other index files
+*.index
+backend/faiss.index
+
+# ─── Logs & Coverage ──────────────────────────────────────────────
+*.log
+coverage/
+htmlcov/
+
+# ─── OS & Editor junk ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# ─── Docker overrides (optional) ──────────────────────────────────
+# If you add an override for compose or auto-generated certs, ignore here:
+docker-compose.override.yml
