@@ -18,7 +18,6 @@ EMBED_LOCAL_MODEL = os.getenv("EMBED_LOCAL_MODEL", "sentence-transformers/all-Mi
 EMBED_OPENAI_MODEL = os.getenv("EMBED_OPENAI_MODEL", "text-embedding-3-small")
 
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "mock")             # "mock" | "openai"
-DRY_RUN_LLM = os.getenv("DRY_RUN_LLM", "true").lower() == "true"
 
 DB_URL = os.getenv("DB_URL", "sqlite:///./local.db")
 INDEX_PATH = os.getenv("INDEX_PATH", "./faiss.index")
@@ -385,7 +384,8 @@ class RAGModel:
             })
 
         # No-cost path (default)
-        if LLM_PROVIDER != "openai" or DRY_RUN_LLM:
+        if LLM_PROVIDER != "openai":
+            print('using FREE path for LLM inference', LLM_PROVIDER)
             if not hits:
                 ans = "No matching video snippets yet. Add a YouTube video and try again."
             else:
@@ -400,7 +400,10 @@ class RAGModel:
         # Paid path: real LLM call
         try:
             from openai import OpenAI
-            client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+            print('using PAID path for LLM inference')
+            theKey = os.getenv("OPENAI_API_KEY")
+            print('using key', theKey)
+            client = OpenAI(api_key=theKey)
             prompt = build_prompt(query, sources)
             comp = client.chat.completions.create(
                 model=os.getenv("LLM_MODEL", "gpt-4o-mini"),
@@ -409,9 +412,19 @@ class RAGModel:
             )
             ans = comp.choices[0].message.content.strip()
             dbg = _confidence(hits, top_k) if debug else None
+            if debug:
+                dbg = dbg or {}
+                dbg["prompt_preview"] = prompt
             return ans, sources, dbg
-        except Exception:
+        except Exception as e:
+            # >>> surface the reason to help debug <<<
+            err = f"{type(e).__name__}: {e}"
+            print(f"[LLM ERROR] {err}")
             snips = [s["snippet"] for s in sources[:min(3, len(sources))]]
-            ans = "LLM call failed; falling back to snippets.\n" + "\n".join([f"- {t}" for t in snips])
+            ans = "LLM call failed; falling back to snippets.\n" + "\n".join([f"- {t}..." for t in snips])
             dbg = _confidence(hits, top_k) if debug else None
+            if debug:
+                dbg = dbg or {}
+                dbg["llm_error"] = err
+                dbg["prompt_preview"] = build_prompt(query, sources)
             return ans, sources, dbg

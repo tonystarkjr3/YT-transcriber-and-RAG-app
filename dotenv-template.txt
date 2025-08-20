@@ -1,0 +1,13 @@
+Line 3 and below are the required environment files for fake inferencing ('local') mode just returns closest embedded vectors
+
+# Default: free/local
+EMBED_PROVIDER=local
+EMBED_LOCAL_MODEL=sentence-transformers/all-MiniLM-L6-v2
+# LLM_PROVIDER=mock 
+## DRY_RUN_LLM=true 
+
+# Toggle-on 1: openai for LLM
+## DRY_RUN_LLM=false
+LLM_PROVIDER=openai
+OPENAI_API_KEY=<your-api-key>
+LLM_MODEL=gpt-4o-mini

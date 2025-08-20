@@ -1,6 +1,6 @@
-# RAG App
+# RAG App for Generating Topical Answers on YT Video Content
 
-This project is a Retrieval-Augmented Generation (RAG) application that allows users to submit queries and receive topical responses. The application is built using FastAPI for the backend and React.js for the frontend.
+This project is a Retrieval-Augmented Generation (RAG) application that allows users to submit queries and receive relevant responses. The application is built using FastAPI for the backend and React.js with Typescript for the frontend.
 
 ## Project Structure
 
@@ -21,19 +21,21 @@ The backend is built with FastAPI and includes the following components:
 
 The frontend is built with React.js and includes the following components:
 
-- **App.tsx**: Main component that sets up routing and renders the layout.
-- **components/QueryForm.tsx**: Component for submitting queries and communicating with the backend API.
-- **pages/Home.tsx**: Home page that displays the QueryForm component and relevant information.
-- **package.json**: Configuration file for npm, listing dependencies and scripts.
+- **App.tsx**: Main component that sets up routing and renders the layout, based on Material-UI in Typescript
+- **pages/Home.tsx**: Home page that displays the menu to add videos, query against existing ones, and view the answer generated. It has several child components
+- **components/TraceSidePanel.tsx**: The 'admin mode' that provides enriched information about past queries submitted
+
 
 ## Setup Instructions
 
 ### Backend
 
 1. Navigate to the `backend` directory.
-2. Install the required dependencies:
+2. Activate a virtual environment to isolate your library, and install the required dependencies:
    ```
-   pip install -r requirements.txt
+   python3 -m venv venv
+   source venv/bin/activate
+   pip3 install -r requirements.txt
    ```
 3. Run the FastAPI application:
    ```
@@ -43,8 +45,9 @@ The frontend is built with React.js and includes the following components:
 ### Frontend
 
 1. Navigate to the `frontend` directory.
-2. Install the required dependencies:
+2. Install the required dependencies, using Node 18+:
    ```
+   # nvm commands, if needed ...
    npm install
    ```
 3. Start the React application:
