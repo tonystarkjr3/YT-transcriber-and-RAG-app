@@ -58,3 +58,5 @@ The frontend is built with React.js and includes the following components:
 ## Evaluation Framework
 
 There is a password-walled admin-level inspection in the frontend that collects some metrics intended to signify the quality of the responses, and aggregated into a single score scaled from 0 to 1. The factors that comprise this aggregation (each factor itself is also similarly scaled 0 to 1, with higher numbers being better) include the level of similarity of the retrieved embeddings accroding to FAISS (Facebok AI Similarity Search), recency of the retrieved content, and diversity of the video excerpts used
+
+The password to unlock the Admin-only Side-panel (as I am seen doing in the accompanying [showcase video](https://drive.google.com/file/d/1F4EVt2nfwVfSPTFvHyZ2Xl0nX-Naa6Gm/view?usp=sharing)) is `letmein`.
