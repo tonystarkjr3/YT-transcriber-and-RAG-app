@@ -30,13 +30,14 @@ The frontend is built with React.js and includes the following components:
 ### Backend
 
 1. Navigate to the `backend` directory.
-2. Activate a virtual environment to isolate your library, and install the required dependencies:
+2. NOTE that you will need, if running with LLM-generated responses, an API key to access the GPT 4o-mini model preferred by this RAG. It is also possible to run without LLM integration, though this will result in the webapp simply displaying the most-releveant excerpts of YT video transcripts. Use `dotenv-template.txt` to make a `.env` on the toplevel that will be read by the FastAPI backend. If using LLM-less setup, specify the values for the section headed by `Toggle-on 1: openai for LLM`; if not, specify the values for the section headed by `Default: free/local`
+3. Activate a virtual environment to isolate your library, and install the required dependencies:
    ```
    python3 -m venv venv
    source venv/bin/activate
    pip3 install -r requirements.txt
    ```
-3. Run the FastAPI application:
+4. Run the FastAPI application:
    ```
    uvicorn app.main:app --reload
    ```
