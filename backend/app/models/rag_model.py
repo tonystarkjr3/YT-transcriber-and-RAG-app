@@ -402,7 +402,6 @@ class RAGModel:
             from openai import OpenAI
             print('using PAID path for LLM inference')
             theKey = os.getenv("OPENAI_API_KEY")
-            print('using key', theKey)
             client = OpenAI(api_key=theKey)
             prompt = build_prompt(query, sources)
             comp = client.chat.completions.create(
