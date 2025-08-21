@@ -1,6 +1,6 @@
 # RAG App for Generating Topical Answers on YT Video Content
 
-This project is a Retrieval-Augmented Generation (RAG) application that allows users to submit queries and receive relevant responses. The application is built using FastAPI for the backend and React.js with Typescript for the frontend.
+This project is a Retrieval-Augmented Generation (RAG) application that allows users to submit queries and receive responses containing topical information from YouTube videos (to the extent that they are identified as relevant) processed beforehand. The application is built using FastAPI for the backend and React.js with Typescript for the frontend.
 
 ## Project Structure
 
@@ -59,4 +59,4 @@ The frontend is built with React.js and includes the following components:
 
 There is a password-walled admin-level inspection in the frontend that collects some metrics intended to signify the quality of the responses, and aggregated into a single score scaled from 0 to 1. The factors that comprise this aggregation (each factor itself is also similarly scaled 0 to 1, with higher numbers being better) include the level of similarity of the retrieved embeddings accroding to FAISS (Facebok AI Similarity Search), recency of the retrieved content, and diversity of the video excerpts used
 
-The password to unlock the Admin-only Side-panel (as I am seen doing in the accompanying [showcase video](https://drive.google.com/file/d/1F4EVt2nfwVfSPTFvHyZ2Xl0nX-Naa6Gm/view?usp=sharing)) is `letmein`.
+The password to unlock the Admin-only Side-panel (as I am seen doing in the accompanying [showcase video](https://youtu.be/GmYiVwAF8sU)) is `letmein`.
